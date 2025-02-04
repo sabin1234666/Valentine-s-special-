@@ -1,0 +1,89 @@
+<!doctype html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Valentine Proposal</title>
+    <style>
+        body {
+            text-align: center;
+            font-family: Arial, sans-serif;
+            background-color: pink;
+        }
+        .teddy {
+            width: 150px;
+            height: auto;
+            margin: 10px;
+        }
+        .popup {
+            position: fixed;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+            background: white;
+            padding: 20px;
+            box-shadow: 0 0 10px rgba(0, 0, 0, 0.2);
+            border-radius: 10px;
+        }
+        button {
+            font-size: 16px;
+            padding: 10px;
+            margin: 10px;
+            cursor: pointer;
+            border: none;
+            border-radius: 5px;
+        }
+        #yesBtn {
+            background-color: green;
+            color: white;
+        }
+        #noBtn {
+            background-color: red;
+            color: white;
+        }
+    </style>
+</head>
+<body>
+    <h1>💕 A Special Question for You 💕</h1>
+    <img src="https://i.imgur.com/7vMfciM.png" class="teddy">
+    <img src="https://i.imgur.com/7vMfciM.png" class="teddy">
+
+    <div id="popup" class="popup">
+        <h2 id="message">Will you be my Valentine? 💖</h2>
+        <button id="yesBtn" onclick="acceptProposal()">Yes</button>
+        <button id="noBtn" onclick="rejectProposal()">No</button>
+    </div>
+
+    <script>
+        let rejectionCount = 0;
+        let yesButtonSize = 16;  // Initial font size
+        let messages = [
+            "Are you sure? 😢", 
+            "Seriously? 😟", 
+            "Why are you rejecting me? 💔", 
+            "Why no? 🥺"
+        ];
+
+        function acceptProposal() {
+            document.getElementById("popup").innerHTML = "<h2>I love you very much! ❤️</h2>";
+        }
+
+        function rejectProposal() {
+            rejectionCount++;
+            let noBtn = document.getElementById("noBtn");
+            let yesBtn = document.getElementById("yesBtn");
+            let message = document.getElementById("message");
+
+            if (rejectionCount < messages.length) {
+                message.innerText = messages[rejectionCount]; // Change message
+            } else {
+                message.innerText = "Come on! Just say YES! 😠";
+            }
+
+            noBtn.style.fontSize = `${16 + rejectionCount * 2}px`;  // Increase "No" button
+            yesButtonSize += 10; // Increase "Yes" button size
+            yesBtn.style.fontSize = `${yesButtonSize}px`;
+        }
+    </script>
+
+</body></html>
